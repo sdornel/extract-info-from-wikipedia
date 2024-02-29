@@ -1,0 +1,119 @@
+{
+    "batchcomplete": "",
+    "query": {
+        "normalized": [
+            {
+                "from": "Caesar's_Civil_War",
+                "to": "Caesar's Civil War"
+            },
+            {
+                "from": "Julian_calendar",
+                "to": "Julian calendar"
+            },
+            {
+                "from": "Roman_citizenship",
+                "to": "Roman citizenship"
+            },
+            {
+                "from": "Marcus_Junius_Brutus",
+                "to": "Marcus Junius Brutus"
+            },
+            {
+                "from": "Gaius_Cassius_Longinus",
+                "to": "Gaius Cassius Longinus"
+            },
+            {
+                "from": "Second_Triumvirate",
+                "to": "Second Triumvirate"
+            }
+        ],
+        "pages": {
+            "24414694": {
+                "pageid": 24414694,
+                "ns": 0,
+                "title": "Caesar's Civil War",
+                "revisions": [
+                    {
+                        "revid": 1090236376,
+                        "parentid": 1086607616,
+                        "user": "Christian75",
+                        "timestamp": "2022-05-28T08:21:37Z",
+                        "comment": "{{R from move}} {{R cap}}"
+                    }
+                ]
+            },
+            "77610": {
+                "pageid": 77610,
+                "ns": 0,
+                "title": "Gaius Cassius Longinus",
+                "revisions": [
+                    {
+                        "revid": 1204081329,
+                        "parentid": 1204081127,
+                        "user": "Gyguvyufgy g7",
+                        "timestamp": "2024-02-06T11:25:17Z",
+                        "comment": "Undid revision 1204081127 by [[Special:Contributions/Gyguvyufgy g7|Gyguvyufgy g7]] ([[User talk:Gyguvyufgy g7|talk]])"
+                    }
+                ]
+            },
+            "15651": {
+                "pageid": 15651,
+                "ns": 0,
+                "title": "Julian calendar",
+                "revisions": [
+                    {
+                        "revid": 1211090590,
+                        "parentid": 1210434108,
+                        "user": "Uclagirl206",
+                        "timestamp": "2024-02-29T20:22:07Z",
+                        "comment": "/* Leap year error */"
+                    }
+                ]
+            },
+            "37325": {
+                "pageid": 37325,
+                "ns": 0,
+                "title": "Marcus Junius Brutus",
+                "revisions": [
+                    {
+                        "revid": 1196185135,
+                        "parentid": 1196165668,
+                        "minor": "",
+                        "user": "P Aculeius",
+                        "timestamp": "2024-01-16T18:46:17Z",
+                        "comment": "/* Preparations in the East */ Slight rewording fixes awkward punctuation\u2014assuming the wording wasn't due to the army already being there ahead of Brutus."
+                    }
+                ]
+            },
+            "1037008": {
+                "pageid": 1037008,
+                "ns": 0,
+                "title": "Roman citizenship",
+                "revisions": [
+                    {
+                        "revid": 1209017340,
+                        "parentid": 1191032491,
+                        "user": "Blaylockjam10",
+                        "timestamp": "2024-02-19T22:55:26Z",
+                        "comment": ""
+                    }
+                ]
+            },
+            "67435": {
+                "pageid": 67435,
+                "ns": 0,
+                "title": "Second Triumvirate",
+                "revisions": [
+                    {
+                        "revid": 1189707775,
+                        "parentid": 1189707758,
+                        "minor": "",
+                        "user": "Liu1126",
+                        "timestamp": "2023-12-13T14:01:11Z",
+                        "comment": "Reverted edits by [[Special:Contributions/70.167.90.167|70.167.90.167]] ([[User talk:70.167.90.167|talk]]) ([[WP:HG|HG]]) (3.4.12)"
+                    }
+                ]
+            }
+        }
+    }
+}
