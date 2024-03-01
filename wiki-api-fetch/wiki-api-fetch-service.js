@@ -5,6 +5,7 @@
 // refer to https://www.mediawiki.org/wiki/API:Etiquette
 async function fetchDataFromEndpoints(apiEndpointArray) {
     const dataHash = {};
+    const dataArray = [];
     if (apiEndpointArray.length < 200) {
         await Promise.all(apiEndpointArray.map(async endpoint => {
             const res = await fetch(endpoint);
@@ -13,11 +14,20 @@ async function fetchDataFromEndpoints(apiEndpointArray) {
                 // console.log(data);
                 for (const key in data.query.pages) { // consider using an array instead of an object
                     // console.log('data.query.pages[key]', data.query.pages[key]);
+                    const title = data.query.pages[key].title;
+
+                    const url = 'https://en.wikipedia.org/wiki/' + title.replaceAll(' ', '_');
                     dataHash[data.query.pages[key].title] = {
-                        title: dataHash[data.query.pages[key].title],
-                        // url: ,
-                        data: data.query.pages[key].revisions[0].slots.main['*']
+                        title: title,
+                        url: url,
+                        text: data.query.pages[key].revisions[0].slots.main['*'].toLowerCase().replace(/<[^>]+>|&nbsp;|<\/?[^>]+>|'{5}/gi, ''),
                     }
+                    dataArray.push({
+                        title: title,
+                        url: url,
+                        text: data.query.pages[key].revisions[0].slots.main['*'].toLowerCase().replace(/<[^>]+>|&nbsp;|<\/?[^>]+>|'{5}/gi, ''),
+                    })
+                    // dataArray.push(data.query.pages[key].revisions[0].slots.main['*']);
                 }
               }
         }))
@@ -27,8 +37,10 @@ async function fetchDataFromEndpoints(apiEndpointArray) {
     // i will have to display the ~100 words before and after the topic for each
     // instance that topic appears
     // perhaps a script to move things into a txt file
-    console.log('dataHash', dataHash);
-    return dataHash;
+    // console.log('dataHash', dataHash);
+    console.log('dataArray', dataArray.join('').length);
+    // return dataHash;
+    return dataArray;
 }
 
 function formatApiEndpoints(urls) {

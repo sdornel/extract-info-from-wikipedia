@@ -1,6 +1,6 @@
 const { getUserInputUrl } = require('./user-input-tooling/user-input-tooling');
-const { initiatePuppeteerSession, getUrls } = require('./services/web-scraper-service');
-const { fetchDataFromEndpoints, formatApiEndpoints } = require('./services/wiki-api-fetch-service');
+const { initiatePuppeteerSession, getUrls } = require('./web-scraper/web-scraper-service');
+const { fetchDataFromEndpoints, formatApiEndpoints } = require('./wiki-api-fetch/wiki-api-fetch-service');
 
 // don't forget to implement a rate-limiter as well
 async function init() {
@@ -20,8 +20,8 @@ async function init() {
         const apiEndpointArray = formatApiEndpoints(urls);
         
         // I need to begin fetching the data from the endpoints.
-        fetchDataFromEndpoints(apiEndpointArray);
-
+        const articles = await fetchDataFromEndpoints(apiEndpointArray);
+        findWordInArticles(articles, inputData.topic);
         // TODO:
         // figure out if wikipedia will ban you for acting like a bot
         // make some sort of rate limiter for when you add in more links
@@ -32,42 +32,40 @@ async function init() {
         // hook up AWS?
         // i also need to somehow be notified if my code is not working due to wiki API changes/deprecations
     } catch (error) {
-        console.error('Error:', error.message);
+        console.error('Error:', error);
     }
 }
 
-// // refer to https://www.mediawiki.org/wiki/API:Etiquette
-// function fetchDataFromEndpoints(apiEndpointArray) {
-//     if (apiEndpointArray.length < 200) {
+function findWordInArticles(articles, topic) {
+    const results = [];
 
-//     }
-// }
+    for (let article of articles) {
+        const words = article.text.split(/\s+/); // split article into words
 
-// function formatApiEndpoint(urls) {
-//     const apiEndpointArray = [];
-//     const apiEndpointStart = 'https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=';
-//     const apiEndpointEnd = '&utf8=1&rvprop=content&rvslots=main';
-//     let titles = [];
-//     // titles index will look like: Julius_Caesar|Pompey|Lepidus|Quintus_Mucius_Scaevola_Pontifex|Publius_Mucius_Scaevola_(consul_133_BC)
-//     urls.forEach(url => {
-//             if (titles.length === 0) {
-//                 // it cannot be at the start of the first title
-//                 titles.push(url.replace('https://en.wikipedia.org/wiki/', ''));
-//             } else {
-//                 // '|' needs to be at the end of every title
-//                 titles.push('|' + url.replace('https://en.wikipedia.org/wiki/', ''));
-//             }
+        for (let i = 0; i < words.length; i++) {
+            if (words[i] === topic) {
+                // <<<YOUR CHOSEN TOPIC>>> + ' ' === 24 characters
+                words[i] = '<<<YOUR CHOSEN TOPIC>>> ' + words[i] + ' <<<YOUR CHOSEN TOPIC>>>';
+                const startIndex = Math.max(0, i - 124); // start index of context
+                const endIndex = Math.min(words.length - 1, i + 124); // end index of context
 
-//             if (titles.length === 50) {
-//                 apiEndpointArray.push(apiEndpointStart + titles.join('') + apiEndpointEnd);
-//                 titles = [];
-//             }
-//     });
-//     console.log('apiEndpointArray[0]', apiEndpointArray[0]);
-//     console.log('apiEndpointArray.length', apiEndpointArray.length);
+                // extract context
+                const context = words.slice(startIndex, endIndex + 1).join(' ');
 
-//     return apiEndpointArray
-// }
+                results.push({
+                    title: article.title,
+                    url: article.url,
+                    text: context,
+                });
+
+                // // skip forward to avoid overlapping occurrences
+                // i += 100;
+            }
+        }
+    }
+    console.log('results', results);
+    return results;
+}
 
 // search every page for the inputted keyword or phrase
 async function searchForTopic(page, topic) {
