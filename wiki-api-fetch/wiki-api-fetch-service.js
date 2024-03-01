@@ -17,6 +17,8 @@ async function fetchDataFromEndpoints(apiEndpointArray) {
                     const title = data.query.pages[key].title;
 
                     const url = 'https://en.wikipedia.org/wiki/' + title.replaceAll(' ', '_');
+
+                    // /<[^>]+>|&nbsp;|<\/?[^>]+>|'{5}/gi === remove HTML tags, &nbsp;, and 5 consecutive ' marks
                     dataHash[data.query.pages[key].title] = {
                         title: title,
                         url: url,
