@@ -43,8 +43,6 @@ async function getUrls(page) {
           ;
       });
       
-    //   links.forEach(l => console.log(l));
-      console.log('DONE', links.length);
       return links;
     }
 }
