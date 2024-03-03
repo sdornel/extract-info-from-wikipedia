@@ -15,14 +15,18 @@ async function init() {
 
         const inputData = await getUserInputUrl();
         console.log(inputData.url, 'is being scraped for', inputData.topic);
+        const startTime = Date.now();
 
-        const page = await initiatePuppeteerSession(inputData.url);
+        const browser = await initiatePuppeteerSession();
+        console.log('Initiated puppeteer session');
 
-        const urls = await getUrls(page);
+        const urls = await getUrls(browser, inputData.url);
         console.log('Found ' + urls.length + ' pages');
 
+        console.log('Formatted endpoints to hit');
         const apiEndpointArray = formatApiEndpoints(urls);
         
+        console.log('Fetching data');
         const articles = await fetchDataFromEndpoints(apiEndpointArray);
         // i should sort articles variable so that it does not always return items in a different order
 
@@ -32,6 +36,11 @@ async function init() {
         
         convertToFileFormat(articleFragments, inputData.topic, '.docx');
         console.log('File saved successfully.');
+
+        const endTime = Date.now(); // Record the end time
+        console.log(`Execution time: ${endTime - startTime} milliseconds`); // Calculate and log the execution time
+    
+        browser.close();
         // TODO:
         // figure out if wikipedia will ban you for acting like a bot after you start getting 800^800 articles
         // make some sort of rate limiter for when you add in more links
@@ -52,7 +61,7 @@ function convertToFileFormat(articleFragments, topic, chosenFormat) {
 
     // this works for txt. not sure if it would work for other file formats
     const stringFormatArticleFragments = articleFragments.join('\n\n');
-    console.log('stringFormatArticleFragments', stringFormatArticleFragments);
+
     // ensure the directory exists
     if (!fs.existsSync('./extracted-text-files/')){
         fs.mkdirSync('./extracted-text-files/');
@@ -64,18 +73,6 @@ function convertToFileFormat(articleFragments, topic, chosenFormat) {
         if (err) {
           console.error('Error writing file:', err);
         }
-    });
-}
-
-function writeTextFile(filePath, content) {
-    return new Promise((resolve, reject) => {
-        fs.writeFile(filePath, content, 'utf8', (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve();
-            }
-        });
     });
 }
 
