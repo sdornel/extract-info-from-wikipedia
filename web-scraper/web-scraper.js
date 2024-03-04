@@ -9,12 +9,12 @@ async function initiatePuppeteerSession(url) {
     return browser;
 }
 
-async function getUrls(browser,) {
+async function getUrls(browser, url) {
   
   // Open a new page
   const page = await browser.newPage();
   
-  url = 'https://en.wikipedia.org/wiki/Julius_Caesar'; // temp hardcoded value. please remove
+  // url = 'https://en.wikipedia.org/wiki/Julius_Caesar'; // here for testing purposes
   await page.goto(url, {
     waitUntil: 'networkidle0',
   });

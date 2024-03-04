@@ -41,16 +41,6 @@ async function init() {
         console.log(`Execution time: ${endTime - startTime} milliseconds`); // Calculate and log the execution time
     
         browser.close();
-        // TODO:
-        // figure out if wikipedia will ban you for acting like a bot after you start getting 800^800 articles
-        // make some sort of rate limiter for when you add in more links
-        // ensure you can iterate one link deeper than the surface stuff you have now
-        // if topic mentioned twice within the 200 word span, combine both texts to decrease file bloat?
-        // i have so many different configuration options that i thought of. i need to create a more
-        // user friendly interface to handle all the different options
-        // store in DB?
-        // hook up AWS?
-        // i also need to somehow be notified if my code is not working due to wiki API changes/deprecations
     } catch (error) {
         console.error('Error:', error);
     }
