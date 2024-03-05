@@ -16,6 +16,7 @@ TODO:
 5. i have so many different configuration options that i thought of. i need to create a more user friendly interface to handle all the different options
 
 6. store in DB?
+6a. use redis
 
 7. hook up AWS?
 

@@ -13,11 +13,11 @@ async function fetchDataFromEndpoints(apiEndpointArray) {
                     const url = 'https://en.wikipedia.org/wiki/' + title.replaceAll(' ', '_');
 
                     // /<[^>]+>|&nbsp;|<\/?[^>]+>|'{5}/gi === remove HTML tags, &nbsp;, and 5 consecutive ' marks
-                    dataHash[data.query.pages[key].title] = {
-                        title: title,
-                        url: url,
-                        text: data.query.pages[key].revisions[0].slots.main['*'].replace(/<[^>]+>|&nbsp;|<\/?[^>]+>|'{5}/gi, ''),
-                    }
+                    // dataHash[data.query.pages[key].title] = {
+                    //     title: title,
+                    //     url: url,
+                    //     text: data.query.pages[key].revisions[0].slots.main['*'].replace(/<[^>]+>|&nbsp;|<\/?[^>]+>|'{5}/gi, ''),
+                    // }
                     dataArray.push({
                         title: title,
                         url: url,
