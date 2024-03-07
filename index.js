@@ -23,7 +23,7 @@ async function init() {
         const urls = await getUrls(browser, inputData.url);
         console.log('Found ' + urls.length + ' pages');
 
-        console.log('Formatted endpoints to hit');
+        console.log('Formatting endpoints to hit');
         const apiEndpointArray = formatApiEndpoints(urls);
         
         console.log('Fetching data');
