@@ -2,12 +2,12 @@ function findTopicInArticles(articles, topic) {
     const results = [];
 
     for (let article of articles) {
-        const words = article.text.split(/\s+/); // split article into words
+        const words = article.text.match(/(?:land commission|\S)+/g); // split article into words but keep topic together even if it contains more than one word
 
         for (let i = 0; i < words.length; i++) {
             if (words[i].toLowerCase() === topic) {
                 /**
-                 * EDGE CASE TO ACCOUNT FOR:
+                 * Potential functionality to add:
                  * if 'legion' is mentioned multiple times in the 100 character span, 
                  * get startIndex of first 'legion' and endIndex of last 'legion'
                  * this should help you avoid redundant texts?
@@ -26,13 +26,9 @@ function findTopicInArticles(articles, topic) {
                     url: article.url,
                     text: context,
                 }, null, '\t'));
-
-                // // skip forward to avoid overlapping occurrences
-                // i += 100;
             }
         }
     }
-    // console.log('results', results);
     return results;
 }
 
