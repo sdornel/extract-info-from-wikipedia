@@ -27,10 +27,10 @@ async function init() {
         const apiEndpointArray = formatApiEndpoints(urls);
         
         console.log('Fetching data');
-        const articles = await fetchDataFromEndpoints(apiEndpointArray);
+        const articles = (await fetchDataFromEndpoints(apiEndpointArray)).sort();
         // i should sort articles variable so that it does not always return items in a different order
 
-        console.log('Retrieving article fragments');
+        console.log(`Found ${articles.length} articles. Retrieving article fragments`);
         const articleFragments = findTopicInArticles(articles, inputData.topic);
         console.log('Article fragments retrieved. converting to file format...');
         
