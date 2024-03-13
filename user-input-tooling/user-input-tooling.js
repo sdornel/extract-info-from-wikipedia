@@ -10,7 +10,7 @@ function getUserInputUrl() {
         rl.question('Input URL to be scraped: ', (url) => {
             rl.question('Input word or phrase to look for: ', (topic) => {
                 rl.close();
-                resolve({ url, topic: topic.toLowerCase() }); // maybe i want both singular and plural of topic?
+                resolve({ url, topic: topic.toLowerCase() });
             });
         });
     });
