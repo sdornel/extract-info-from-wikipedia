@@ -30,26 +30,29 @@ function formatApiEndpoints(urls) {
     const apiEndpointEnd = '&utf8=1&rvprop=content&rvslots=main';
     let titles = [];
     // titles index will look like: Julius_Caesar|Pompey|Lepidus|Quintus_Mucius_Scaevola_Pontifex|Publius_Mucius_Scaevola_(consul_133_BC)
-    urls.forEach(url => {
-            if (url.includes('#')) {
-                /**
-                 * the # sign takes you to a certain section of a wiki page
-                 * the API uses page titles without the # when retrieving body text
-                 */
-                url = url.split('#')[0];
-            }
-            if (titles.length === 0) {
-                // '|' cannot be at the start of the first title
-                titles.push(url.replace('https://en.wikipedia.org/wiki/', ''));
-            } else {
-                // '|' needs to be at the end of every title for API urls
-                titles.push('|' + url.replace('https://en.wikipedia.org/wiki/', ''));
-            }
+    urls.forEach((url, index) => {
+        if (url.includes('#')) {
+            /**
+             * the # sign takes you to a certain section of a wiki page
+             * the API uses page titles without the # when retrieving body text
+             */
+            url = url.split('#')[0];
+        }
+        if (titles.length === 0) {
+            // '|' cannot be at the start of the first title
+            titles.push(url.replace('https://en.wikipedia.org/wiki/', ''));
+        } else {
+            // '|' needs to be at the end of every title for API urls
+            titles.push('|' + url.replace('https://en.wikipedia.org/wiki/', ''));
+        }
 
-            if (titles.length === 50) { // wikipedia only allows 50 title values in one request
-                apiEndpointArray.push(apiEndpointStart + titles.join('') + apiEndpointEnd);
-                titles = [];
-            }
+        if (titles.length === 50) { // wikipedia only allows 50 title values in one request
+            apiEndpointArray.push(apiEndpointStart + titles.join('') + apiEndpointEnd);
+            titles = [];
+        }
+        if (index === urls.length-1) { // if final batch of titles is not length 50, add them to array anyway
+            apiEndpointArray.push(apiEndpointStart + titles.join('') + apiEndpointEnd);
+        }
     });
     return apiEndpointArray
 }
