@@ -2,8 +2,13 @@ function findTopicInArticles(articles, topic) {
     const results = [];
 
     for (let article of articles) {
-        const words = article.text.match(/(?:land commission|\S)+/g); // split article into words but keep topic together even if it contains more than one word
+        const regexPattern = new RegExp(`(?:\\b${topic}\\b|\\S)+`, 'gi'); // split article into words but keep topic together even if it contains more than one word
 
+        words = article.text.match(regexPattern);
+
+        if (article.title === 'Julius Caesar') {
+            console.log('got here');
+        }
         for (let i = 0; i < words.length; i++) {
             if (words[i].toLowerCase() === topic) {
                 /**
