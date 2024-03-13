@@ -14,7 +14,7 @@ async function getUrls(browser, url) {
   // Open a new page
   const page = await browser.newPage();
   
-  // url = 'https://en.wikipedia.org/wiki/Julius_Caesar'; // here for testing purposes
+  // url = 'https://en.wikipedia.org/wiki/Julius_Caesar'; // here for testing purposes so you don't have to keep copy/pasting the url from wikipedia itself
   await page.goto(url, {
     waitUntil: 'networkidle0',
   });
@@ -48,9 +48,10 @@ async function getUrls(browser, url) {
       }
     }
 
-    return Array.from(linksSet);
+    return (Array.from(linksSet));
   }, mwContentTextHandle);
 
+  links.push(url);
   return links;
 }
 
