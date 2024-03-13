@@ -2,10 +2,8 @@ const { findTopicInArticles } = require('./topic-extractor/topic-extractor');
 const { getUserInputUrl } = require('./user-input-tooling/user-input-tooling');
 const { initiatePuppeteerSession, getUrls } = require('./web-scraper/web-scraper');
 const { fetchDataFromEndpoints, formatApiEndpoints } = require('./wiki-api-fetch/wiki-api-fetch');
+const { convertToFileFormat } = require('./convert-to-file-format/convert-to-file-format');
 
-const fs = require('fs');
-
-// don't forget to implement a rate-limiter as well
 async function init() {
     try {
         console.log('================================================================');
@@ -14,7 +12,7 @@ async function init() {
         console.log('================================================================');
 
         const inputData = await getUserInputUrl();
-        console.log(inputData.url, 'is being scraped for', inputData.topic);
+        console.log(inputData.url, 'and referenced articles are being scraped for', inputData.topic);
         const startTime = Date.now();
 
         const browser = await initiatePuppeteerSession();
@@ -44,26 +42,6 @@ async function init() {
     } catch (error) {
         console.error('Error:', error);
     }
-}
-
-function convertToFileFormat(articleFragments, topic, chosenFormat) {
-    console.log('topic', topic);
-
-    // this works for txt. not sure if it would work for other file formats
-    const stringFormatArticleFragments = articleFragments.join('\n\n');
-
-    // ensure the directory exists
-    if (!fs.existsSync('./extracted-text-files/')){
-        fs.mkdirSync('./extracted-text-files/');
-    }
-    
-    const filePath = './extracted-text-files/' + topic.split('_').join('') + Date.now() + chosenFormat;
-
-    fs.writeFile(filePath, stringFormatArticleFragments, (err) => {
-        if (err) {
-          console.error('Error writing file:', err);
-        }
-    });
 }
 
 init();
