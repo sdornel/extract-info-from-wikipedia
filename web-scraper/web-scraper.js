@@ -11,7 +11,6 @@ async function initiatePuppeteerSession(url) {
 
 async function getUrls(browser, url) {
   
-  // Open a new page
   const page = await browser.newPage();
   
   // url = 'https://en.wikipedia.org/wiki/Julius_Caesar'; // here for testing purposes so you don't have to keep copy/pasting the url from wikipedia itself
