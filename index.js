@@ -11,7 +11,12 @@ async function init() {
         console.log('In the future I may extend the functionality to other websites.');
         console.log('================================================================');
 
-        const inputData = await getUserInputUrl();
+        // receive data from java GUI
+        const inputData = {
+            url: process.argv[2],
+            topic: process.argv[3]
+        }
+        // const inputData = await getUserInputUrl(); // if you want to start the app without using java
         console.log(inputData.url, 'and referenced articles are being scraped for', inputData.topic);
         const startTime = Date.now();
 
@@ -25,10 +30,9 @@ async function init() {
         const apiEndpointArray = formatApiEndpoints(urls);
         
         console.log('Fetching data');
-        const articles = (await fetchDataFromEndpoints(apiEndpointArray)).sort();
-        // i should sort articles variable so that it does not always return items in a different order
+        const articles = (await fetchDataFromEndpoints(apiEndpointArray)).sort(); // sort articles variable so that it does not always return items in a different order
 
-        console.log(`Found ${articles.length} articles. Retrieving article fragments`);
+        console.log(`Retrieving article fragments`);
         const articleFragments = findTopicInArticles(articles, inputData.topic);
         console.log('Article fragments retrieved. converting to file format...');
         

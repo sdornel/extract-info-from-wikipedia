@@ -67,7 +67,29 @@ public class TwoInputFieldsGUI {
             // send data to node app
             System.out.println("(java) URL: " + url);
             System.out.println("(java) Search Phrase: " + searchPhrase);
+
+            startNodeApplication(url, searchPhrase);
         });
     }
 
+    private static void startNodeApplication(String url, String searchPhrase) {
+        try {
+            // Start the Node.js application by executing a command
+            ProcessBuilder processBuilder = new ProcessBuilder("node", "../index.js", url, searchPhrase);
+            Process process = processBuilder.start();
+
+            // Read the output from the Node.js application
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            // Wait for the process to finish
+            int exitCode = process.waitFor();
+            System.out.println("Node.js application exited with code " + exitCode);
+        } catch (IOException | InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
