@@ -8,6 +8,8 @@ To start, ensure you are in root and type:
 3. topic to be searched for (ie - roman republic)
 
 The application will then create a .docx file with all the relevant data in JSON objects looking like this:
+
+
 {
   "title": ,
   "url": ,
