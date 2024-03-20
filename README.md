@@ -6,3 +6,10 @@ To start, ensure you are in root and type:
 1. node index.js
 2. name of wikipedia article (ie - https://en.wikipedia.org/wiki/Julius_Caesar)
 3. topic to be searched for (ie - roman republic)
+
+The application will then create a .docx file with all the relevant data in JSON objects looking like this:
+{
+  "title": ,
+  "url": ,
+  "text":
+}
