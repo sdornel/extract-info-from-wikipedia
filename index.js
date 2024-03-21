@@ -34,7 +34,7 @@ async function init() {
 
         console.log(`Retrieving article fragments`);
         const articleFragments = findTopicInArticles(articles, inputData.topic);
-        console.log('Article fragments retrieved. converting to file format...');
+        console.log(articleFragments.length + ' article fragments retrieved. converting to file format...');
         
         convertToFileFormat(articleFragments, inputData.topic, '.docx');
         console.log('File saved successfully.');

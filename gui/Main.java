@@ -7,7 +7,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class TwoInputFieldsGUI {
+public class Main {
     public static void main(String[] args) {
         // Create the frame
         JFrame frame = new JFrame("Two Input Fields GUI");

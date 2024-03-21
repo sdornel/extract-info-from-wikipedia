@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 function convertToFileFormat(articleFragments, topic, chosenFormat) {
-    // this works for txt. not sure if it would work for other file formats
+    // this works for txt and docx. not sure if it would work for other file formats
     const stringFormatArticleFragments = articleFragments.join('\n\n');
 
     // ensure the directory exists
