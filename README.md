@@ -2,6 +2,8 @@
 
 Currently this application is able to get every reference to a certain word/phrase within a wikipedia page as well as the article URLs located referenced that wikipedia page. It also gets 100 words before the chosen topic and 100 words after the chosen topic.
 
+Before you start run "npm install"
+
 To start, ensure you are in root and type:
 1. node index.js
 2. name of wikipedia article (ie - https://en.wikipedia.org/wiki/Julius_Caesar)
