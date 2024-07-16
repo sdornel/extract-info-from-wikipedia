@@ -1,3 +1,5 @@
 node_modules
 extracted-text-files
 mongo-connection-details.md
+
+.DS_Store
