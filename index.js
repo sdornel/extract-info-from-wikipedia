@@ -12,11 +12,11 @@ async function init() {
         console.log('================================================================');
 
         // receive data from java GUI
-        // const inputData = {
-        //     url: process.argv[2],
-        //     topic: process.argv[3]
-        // }
-        const inputData = await getUserInputUrl(); // if you want to start the app without using java
+        const inputData = {
+            url: process.argv[2],
+            topic: process.argv[3]
+        }
+        // const inputData = await getUserInputUrl(); // if you want to start the app without using java
         console.log(inputData.url, 'and referenced articles are being scraped for', inputData.topic);
         const startTime = Date.now();
 
@@ -24,7 +24,7 @@ async function init() {
         console.log('Initiated puppeteer session');
 
         const urls = await getUrls(browser, inputData.url);
-        console.log('Found ' + urls.length + ' pages');
+        console.log('Found ' + urls.length + ' page(s)');
 
         console.log('Formatting endpoints to hit');
         const apiEndpointArray = formatApiEndpoints(urls);
