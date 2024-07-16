@@ -15,7 +15,7 @@ async function init() {
         // receive data from java GUI
         const inputData = {
             url: process.argv[2],
-            topic: process.argv[3]
+            topic: process.argv[3].toLowerCase(),
         }
         console.log('inputData', inputData);
         // const inputData = await getUserInputUrl(); // if you want to start the app without using java
