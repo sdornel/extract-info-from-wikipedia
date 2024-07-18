@@ -16,10 +16,10 @@ async function fetchDataFromEndpoints(apiEndpointArray) {
                         title: title,
                         url: url,
                         text: data.query.pages[key].revisions[0].slots.main['*'].replace(/<[^>]+>|&nbsp;|<\/?[^>]+>|'{5}/gi, ''),
-                    })
+                    });
                 }
               }
-        }))
+        }));
     }
     return dataArray;
 }
