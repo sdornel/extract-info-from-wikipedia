@@ -27,6 +27,7 @@ async function init() {
 
         const urls = await getUrls(browser, inputData.url);
         console.log('Found ' + urls.length + ' page(s)');
+        browser.close(); // free up resources
 
         console.log('Formatting endpoints to hit');
         const apiEndpointArray = formatApiEndpoints(urls);
@@ -44,7 +45,7 @@ async function init() {
         const endTime = Date.now(); // Record the end time
         console.log(`Execution time: ${endTime - startTime} milliseconds`); // Calculate and log the execution time
     
-        browser.close();
+        // browser.close();
     } catch (error) {
         console.error('Error:', error);
     }

@@ -50,6 +50,7 @@ async function getUrls(browser, url) {
     return (Array.from(linksSet));
   }, mwContentTextHandle);
 
+  await page.close(); // free up resources
   links.push(url);
   return links;
 }
