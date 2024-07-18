@@ -13,12 +13,12 @@ async function init() {
 
         console.log('process.argv', process.argv);
         // receive data from java GUI
-        const inputData = {
-            url: process.argv[2],
-            topic: process.argv[3].toLowerCase(),
-        }
-        console.log('inputData', inputData);
-        // const inputData = await getUserInputUrl(); // if you want to start the app without using java
+        // const inputData = {
+        //     url: process.argv[2],
+        //     topic: process.argv[3].toLowerCase(),
+        // }
+        // console.log('inputData', inputData);
+        const inputData = await getUserInputUrl(); // if you want to start the app without using java
         console.log(inputData.url, 'and referenced articles are being scraped for', inputData.topic);
         const startTime = Date.now();
 
