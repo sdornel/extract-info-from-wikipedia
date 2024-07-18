@@ -13,7 +13,7 @@ async function getUrls(browser, url) {
   
   const page = await browser.newPage();
   
-  // url = 'https://en.wikipedia.org/wiki/Julius_Caesar'; // here for testing purposes so you don't have to keep copy/pasting the url from wikipedia itself
+  url = 'https://en.wikipedia.org/wiki/Julius_Caesar'; // here for testing purposes so you don't have to keep copy/pasting the url from wikipedia itself
   await page.goto(url, {
     waitUntil: 'networkidle0',
   });
@@ -22,7 +22,7 @@ async function getUrls(browser, url) {
   if (!mwContentTextHandle) return [];
 
   const links = await page.evaluate(async (mwContentText) => {
-    const linksSet = new Set();
+    const linksSet = new Set(); // avoid duplicates
     const anchors = mwContentText.querySelectorAll('a');
 
     for (const anchor of anchors) {
