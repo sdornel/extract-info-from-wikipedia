@@ -4,9 +4,9 @@
 Based on a chosen wikipedia article and phrase, this application gets all references to said phrase with 100 words before and after
 1) within the selected article
 2) within articles that have links within the selected article
-3) all articles that have links to the articles that have links.
+3) all articles that have links inside the articles that have links.
 
-As an example, if we choose the phrase "javascript" and we choose a wikipedia page with links to 5 articles, the following will occur:
+If we choose the phrase "javascript" and we choose a wikipedia page with links to 5 articles, the following will occur:
 1) The chosen wikipedia page gets scanned for "javascript"
 2) The 5 articles with links to the chosen page get scanned for "javascript"
 3) Any articles that have links in the above 5 articles get scanned for "javascript"
