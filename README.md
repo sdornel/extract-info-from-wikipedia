@@ -1,5 +1,5 @@
 # extract-info-from-wikipedia
-
+This scraper can look through 1000 articles worth of data in slightly less than 10 seconds!
 
 Based on a chosen wikipedia article and phrase, this application gets all references to said phrase with 100 words before and after
 1) within the selected article
