@@ -1,8 +1,9 @@
 // refer to https://www.mediawiki.org/wiki/API:Etiquette
 async function fetchDataFromEndpoints(apiEndpointArray) {
     const dataArray = [];
-    if (apiEndpointArray.length < 200) { // need to avoid overloading the system. should remove this later
+    // if (apiEndpointArray.length < 200) { // need to avoid overloading the system. should remove this later
         await Promise.all(apiEndpointArray.map(async endpoint => {
+            console.log('endpoint', endpoint);
             const res = await fetch(endpoint);
             if (res.ok) {
                 const data = await res.json();
@@ -20,7 +21,7 @@ async function fetchDataFromEndpoints(apiEndpointArray) {
                 }
               }
         }));
-    }
+    // }
     return dataArray;
 }
 
