@@ -1,6 +1,6 @@
 # extract-info-from-wikipedia
 
-Currently this application is able to get every reference to a certain word/phrase within a wikipedia page as well as the article URLs located referenced that wikipedia page. It also gets 100 words before the chosen topic and 100 words after the chosen topic.
+Currently this application is able to get every reference to a certain word/phrase within a wikipedia page as well as from the article URLs referenced in that wikipedia page. It also gets 100 words before the chosen topic and 100 words after the chosen topic.
 
 Before you start run "npm install"
 
