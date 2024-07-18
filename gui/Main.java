@@ -10,7 +10,7 @@ import java.net.Socket;
 public class Main {
     public static void main(String[] args) {
         // Create the frame
-        JFrame frame = new JFrame("Two Input Fields GUI");
+        JFrame frame = new JFrame("Wikipedia Scraper. Make Your Selections.");
 
         // Create two input fields
         JTextField urlField = new JTextField(20);
