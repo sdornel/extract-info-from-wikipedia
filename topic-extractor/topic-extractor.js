@@ -6,11 +6,8 @@ function findTopicInArticles(articles, topic) {
 
         words = article.text.match(regexPattern);
 
-        if (article.title === 'Julius Caesar') {
-            console.log('got here');
-        }
         for (let i = 0; i < words.length; i++) {
-            if (words[i].toLowerCase() === topic) {
+            if (words[i].replace(/^\[\[|\]\]$/g, '').toLowerCase() === topic) {
                 /**
                  * Potential functionality to add:
                  * if 'legion' is mentioned multiple times in the 100 character span, 
