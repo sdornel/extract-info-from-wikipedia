@@ -18,7 +18,7 @@ async function getUrls(browser, url) {
     waitUntil: 'networkidle0',
   });
 
-  const mwContentTextHandle = await page.$('#mw-content-text');
+  const mwContentTextHandle = await page.$('#mw-content-text'); // selects main section of wikipedia page
   if (!mwContentTextHandle) return [];
 
   const links = await page.evaluate(async (mwContentText) => {
